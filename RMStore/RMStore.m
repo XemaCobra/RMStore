@@ -229,6 +229,7 @@ typedef void (^RMStoreSuccessBlock)();
     [self requestProducts:identifiers success:nil failure:nil];
 }
 
+SKProductsRequest *productsRequest = nil;
 - (void)requestProducts:(NSSet*)identifiers
                 success:(RMSKProductsRequestSuccessBlock)successBlock
                 failure:(RMSKProductsRequestFailureBlock)failureBlock
@@ -239,7 +240,7 @@ typedef void (^RMStoreSuccessBlock)();
     delegate.failureBlock = failureBlock;
     [_productsRequestDelegates addObject:delegate];
  
-    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:identifiers];
+    productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:identifiers];
 	productsRequest.delegate = delegate;
     
     [productsRequest start];
